@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
+import Post from "./Post";
 
 function App() {
   return (
@@ -12,6 +13,22 @@ function App() {
         />
       </div>
       <h1>hello world</h1>
+
+      <Post
+        username="anand"
+        caption="good morning"
+        imageUrl="https://i.morioh.com/200623/6c839150.jpg"
+      />
+      <Post
+        username="anand"
+        caption="good morning"
+        imageUrl="https://i.morioh.com/200623/6c839150.jpg"
+      />
+      <Post
+        username="anand"
+        caption="good morning"
+        imageUrl="https://i.morioh.com/200623/6c839150.jpg"
+      />
     </div>
   );
 }
