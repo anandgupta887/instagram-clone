@@ -13,3 +13,20 @@
   background-color: #fafafa;
   height: 100vh;
 }
+
+.app__input {
+  padding-top: 10px;
+  padding-right: 10px;
+}
+
+.app__button {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 30px !important;
+  margin-bottom: 10px !important;
+}
+
+.app__signup {
+  display: flex;
+  flex-direction: column;
+}
