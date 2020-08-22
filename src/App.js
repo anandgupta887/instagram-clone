@@ -31,7 +31,9 @@ function App() {
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
   const [posts, setPosts] = useState([]);
+
   const [open, setOpen] = useState(false);
+  const [openSignIn, setOpenSignIn] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -50,6 +52,16 @@ function App() {
     };
   }, [user, username]);
 
+  const signIn = (event) => {
+    event.preventDefault();
+    auth
+      .signInWithEmailAndPassword(email, password)
+
+      .catch((error) => alert(error.message));
+
+    setOpenSignIn(false);
+  };
+
   const signUp = (event) => {
     event.preventDefault();
     auth
@@ -60,6 +72,8 @@ function App() {
         });
       })
       .catch((error) => alert(error.message));
+
+    setOpen(false);
   };
 
   useEffect(() => {
@@ -70,6 +84,36 @@ function App() {
 
   return (
     <div className="app">
+      <Modal open={openSignIn} onClose={() => setOpenSignIn(false)}>
+        <div style={modalStyle} className={classes.paper}>
+          <form className="app__signup">
+            <center>
+              <img
+                className="app__headerImage"
+                src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
+                alt=""
+              />
+            </center>
+            <Input
+              className="app__input"
+              placeholder="email"
+              type="text"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
+            <Input
+              className="app__input"
+              placeholder="password"
+              type="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
+            <Button type="submit" className="app__button" onClick={signIn}>
+              Log In
+            </Button>
+          </form>
+        </div>
+      </Modal>
       <Modal open={open} onClose={() => setOpen(false)}>
         <div style={modalStyle} className={classes.paper}>
           <form className="app__signup">
@@ -118,6 +162,7 @@ function App() {
         <Button onClick={() => auth.signOut()}>Sign out</Button>
       ) : (
         <div className="app__loginContainer">
+          <Button onClick={() => setOpenSignIn(true)}>Sign In</Button>
           <Button onClick={() => setOpen(true)}>Sign Up</Button>
         </div>
       )}
