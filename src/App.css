@@ -3,6 +3,7 @@
 }
 
 .app__header {
+  display: flex;
   object-fit: contain;
   background-color: white;
   padding: 20px;
